@@ -1,0 +1,41 @@
+@mixin MakeFont($font-family, $fonts, $base-font-path: '') {
+  @each $font, $weight in $fonts {
+    $font-with-dash: #{$font-family}-#{$font};
+    $font-with-space: #{$font-family} #{$font};
+    $font-with-path: #{$base-font-path}/#{$font-with-dash};
+
+    @font-face {
+      font-family: $font-family;
+      src: url('#{$font-with-path}.eot');
+      src: local('#{$font-with-dash}'), local('#{$font-with-space}'),
+      url('#{$font-with-path}.eot?#iefix') format('embedded-opentype'),
+      url('#{$font-with-path}.woff2') format('woff2'),
+      url('#{$font-with-path}.woff') format('woff'),
+      url('#{$font-with-path}.ttf') format('truetype');
+      font-weight: $weight;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: $font-family;
+      src: url('#{$font-with-path}Italic.eot');
+      src: local('#{$font-with-dash}Italic'), local('#{$font-with-space} Italic'),
+      url('#{$font-with-path}Italic.eot?#iefix') format('embedded-opentype'),
+      url('#{$font-with-path}Italic.woff2') format('woff2'),
+      url('#{$font-with-path}Italic.woff') format('woff'),
+      url('#{$font-with-path}Italic.ttf') format('truetype');
+      font-weight: $weight;
+      font-style: italic;
+    }
+  }
+}
+
+$fonts: (
+  Light: 300,
+  Regular: 400,
+  Medium: 500,
+  Bold: 600,
+  Black: 700,
+);
+
+@include MakeFont('Formular', $fonts, '@/assets/fonts/formular');
