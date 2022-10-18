@@ -1,1 +1,14 @@
+@import 'reset';
+@import 'variables';
 @import 'fonts';
+
+html, body, #__nuxt {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background-color: var(--background-color-primary);
+  color: var(--font-color-primary);
+  font-family: Formular, Helvetica, Arial, sans-serif;
+}

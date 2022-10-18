@@ -1,9 +1,14 @@
 <template>
-  <h1>Hello, Nuxt ✌</h1>
+  <div>
+    <h1>Hello, Nuxt ✌</h1>
+  </div>
 </template>
 
 <style scoped>
-h1 {
-  font-family: Formular, Helvetica, Arial, sans-serif;
+div {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
