@@ -1,23 +1,20 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
+import {resolve} from 'path';
+
+const SRC = resolve(__dirname, 'src');
+
 export default defineNuxtConfig({
+  rootDir: SRC,
   app: {
     head: {
-      link: [
-        { rel: 'icon', href: '/favicon.svg' },
-      ]
-    }
+      link: [{rel: 'icon', href: '/favicon.svg'}],
+    },
   },
   css: ['@/assets/styles/main.scss'],
-  // vite: {
-  //   css: {
-  //     preprocessorOptions: {
-  //       sass: {
-  //         additionalData: '@import "@/assets/styles/_variables.sass"',
-  //       },
-  //     },
-  //   },
-  // },
   typescript: {
-    shim: false
-  }
+    shim: false,
+  },
+  modules: [
+    '@vueuse/nuxt',
+  ],
 })
