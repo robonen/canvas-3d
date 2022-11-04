@@ -1,11 +1,19 @@
+# IDE
 .vscode
 .idea
 
+
+# Temporary files
 node_modules
+tmp
 *.log*
-.nuxt
-.nitro
-.cache
-.output
+
+# Build
+src/.nuxt
+src/.nitro
+src/.cache
+src/.output
+src/dist
+
+# Environment
 .env
-dist
