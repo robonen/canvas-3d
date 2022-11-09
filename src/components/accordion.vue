@@ -6,7 +6,7 @@ const showForm = ref<boolean>(false);
 <template>
   <section class="block">
     <div class="header" @click="showForm = !showForm">
-      <h2 class="title">{{ title }}</h2>
+      <h2>{{ title }}</h2>
       <button class="button">
         <IconClose v-if="showForm"/>
         <IconOpen v-else/>
@@ -18,7 +18,7 @@ const showForm = ref<boolean>(false);
   </section>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .block {
   display: flex;
   flex-direction: column;
@@ -33,11 +33,6 @@ const showForm = ref<boolean>(false);
   user-select: none;
   cursor: pointer;
   padding: 8px 0;
-}
-
-.title {
-  font-size: 1.04rem;
-  font-weight: 500;
 }
 
 .button {

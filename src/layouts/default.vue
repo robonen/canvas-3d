@@ -21,7 +21,7 @@ const showMenu = ref<boolean>(true);
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .wrapper {
   width: 100%;
   height: 100%;
@@ -32,9 +32,10 @@ const showMenu = ref<boolean>(true);
 .content {
   position: relative;
   height: max-content;
-  margin: 20px;
+  padding: 20px;
   display: flex;
   column-gap: 16px;
+  max-height: 100%;
 }
 
 .controls {
@@ -44,15 +45,14 @@ const showMenu = ref<boolean>(true);
   background-color: white;
   border-radius: 8px;
   width: 480px;
-  height: max-content;
   max-height: calc(100% - 40px);
-  overflow-y: auto;
+  overflow: auto;
   border: var(--border);
   box-shadow: var(--shadow);
   z-index: 2;
   display: flex;
   flex-direction: column;
-  row-gap: 20px;
+  row-gap: 24px;
 }
 
 .button {

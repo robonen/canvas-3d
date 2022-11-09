@@ -1,25 +1,13 @@
 <script setup lang="ts">
-const axes = ['x', 'y', 'z'];
+const figures = ['Тетраэдр', 'Гексаэдр', 'Октаэдр', 'Додекаэдр', 'Икосаэдр'];
 </script>
 
 <template>
-  <div class="container">
-    <Accordion title="Перемещение">
-      <FormRange v-for="axis in axes" :label="`${axis} =`" :min="-10" :max="10" :step="0.1" :defaultValue="0"/>
-    </Accordion>
-    <Accordion title="Вращение">
-      <FormRange v-for="axis in axes" :label="`${axis} =`" :min="0" :max="359" :step="1" :defaultValue="0"/>
-    </Accordion>
-    <Accordion title="Масштабирование">
-      <FormRange v-for="axis in axes" :key="axis" :label="`${axis} =`" :min="0.1" :max="5" :step="0.1" :defaultValue="1"/>
-    </Accordion>
-  </div>
+  <h1>Выберете фигуру</h1>
+  <GridContainer>
+    <GridElement v-for="figure in figures" :key="figure" :title="figure"/>
+  </GridContainer>
 </template>
 
-<style scoped>
-.container {
-  display: flex;
-  flex-direction: column;
-  row-gap: 16px;
-}
+<style scoped lang="scss">
 </style>
