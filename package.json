@@ -3,6 +3,9 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "typecheck": "nuxt typecheck",
+    "info": "nuxt info",
+    "analyze": "nuxt analyze",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"

@@ -39,3 +39,13 @@ $fonts: (
 );
 
 @include MakeFont('Formular', $fonts, '@/assets/fonts/formular');
+
+@font-face {
+  font-family: 'Computer Modern Serif';
+  src: url('@/assets/fonts/computer-modern/cmunrm.eot');
+  src: url('@/assets/fonts/computer-modern/cmunrm.eot?#iefix') format('embedded-opentype'),
+  url('@/assets/fonts/computer-modern/cmunrm.woff') format('woff'),
+  url('@/assets/fonts/computer-modern/cmunrm.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
