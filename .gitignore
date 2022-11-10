@@ -5,8 +5,10 @@
 
 # Temporary files
 node_modules
-tmp
-*.log*
+**/*~
+**/*.log
+**/.DS_Store
+**/Thumbs.db
 
 # Build
 src/.nuxt
