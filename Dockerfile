@@ -5,10 +5,9 @@ FROM node:${NODE_VERSION} AS builder
 
 WORKDIR /build
 
-# See .dockerignore
 COPY . .
 
-RUN npm ci && npm cache clean --force && ls -a
+RUN npm ci && npm run build && npm cache clean --force
 
 # Stage 2: Run the application
 FROM node:${NODE_VERSION}
@@ -16,6 +15,9 @@ FROM node:${NODE_VERSION}
 WORKDIR /app
 
 COPY --from=builder /build/src/.output .
+
+ENV HOST=0.0.0.0
+ENV PORT=3000
 
 VOLUME /app
 EXPOSE 3000

@@ -11,11 +11,11 @@ node_modules
 **/Thumbs.db
 
 # Build
-src/.nuxt
-src/.nitro
-src/.cache
-src/.output
-src/dist
+**/.nuxt
+**/.nitro
+**/.cache
+**/.output
+**/dist
 
 # Environment
 .env
