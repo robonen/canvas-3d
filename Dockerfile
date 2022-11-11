@@ -7,7 +7,7 @@ WORKDIR /build
 
 COPY . .
 
-RUN npm ci && npm run build && npm cache clean --force
+RUN npm cache clean --force && npm ci && npm run build
 
 # Stage 2: Run the application
 FROM node:${NODE_VERSION}

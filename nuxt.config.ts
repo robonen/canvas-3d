@@ -1,4 +1,5 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
+import {defineNuxtConfig} from 'nuxt/config';
 import {resolve} from 'path';
 
 const SRC = resolve(__dirname, 'src');
