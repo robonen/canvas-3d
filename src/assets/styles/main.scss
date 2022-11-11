@@ -1,6 +1,8 @@
 @import 'reset';
 @import 'variables';
 @import 'fonts';
+@import 'scroll';
+@import 'animations';
 
 html, body, #__nuxt {
   width: 100%;
@@ -11,4 +13,19 @@ body {
   background-color: var(--background-color-primary);
   color: var(--font-color-primary);
   font-family: Formular, Helvetica, Arial, sans-serif;
+}
+
+button {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+h1, h2 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+h2 {
+  font-weight: 500;
 }
