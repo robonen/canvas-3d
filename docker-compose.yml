@@ -1,0 +1,55 @@
+version: '3'
+
+services:
+
+  proxy:
+    container_name: proxy
+    image: nginx:latest
+    ports:
+      - '${PROXY_PORT:-80}:80'
+      - '${PROXY_PORT_SSL:-443}:443'
+    volumes:
+      - './config/nginx/proxy.conf:/etc/nginx/conf.d/default.conf'
+    networks:
+      - c3d_net
+    depends_on:
+      - app
+
+  app:
+    container_name: app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '${FORWARD_APP_PORT:-3000}:3000'
+    networks:
+      - c3d_net
+    depends_on:
+      - db
+
+  db:
+    container_name: db
+    image: 'postgres:latest'
+    ports:
+      - '${FORWARD_DB_PORT:-5432}:5432'
+    environment:
+      PGPASSWORD: '${DB_PASSWORD:-secret}'
+      POSTGRES_DB: '${DB_DATABASE}'
+      POSTGRES_USER: '${DB_USERNAME}'
+      POSTGRES_PASSWORD: '${DB_PASSWORD:-secret}'
+    volumes:
+      - 'c3d_vol:/var/lib/postgresql/data'
+    networks:
+      - c3d_net
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-q", "-d", "${DB_DATABASE}", "-U", "${DB_USERNAME}" ]
+      retries: 3
+      timeout: 5s
+
+volumes:
+  c3d_vol:
+    driver: local
+
+networks:
+  c3d_net:
+    driver: bridge
