@@ -1,4 +1,10 @@
 {
+  "name": "canvas3d",
+  "description": "Web application for affine transformations of three-dimensional figures",
+  "bugs": {
+    "url": "https://github.com/robonen/canvas-3d/issues?q=is:open is:issue label:bug"
+  },
+  "license": "MIT",
   "private": true,
   "scripts": {
     "build": "nuxt build",

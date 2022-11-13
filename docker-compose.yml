@@ -2,26 +2,31 @@ version: '3'
 
 services:
 
-  proxy:
-    container_name: proxy
+  proxy_lb:
+    container_name: proxy_lb
     image: nginx:latest
     ports:
       - '${PROXY_PORT:-80}:80'
       - '${PROXY_PORT_SSL:-443}:443'
     volumes:
-      - './config/nginx/proxy.conf:/etc/nginx/conf.d/default.conf'
+      - './config/nginx/proxy_lb.conf:/etc/nginx/conf.d/default.conf'
     networks:
       - c3d_net
     depends_on:
       - app
 
   app:
-    container_name: app
+#    container_name: app
     build:
       context: .
       dockerfile: Dockerfile
-    ports:
-      - '${FORWARD_APP_PORT:-3000}:3000'
+    deploy:
+      mode: replicated
+      replicas: 2
+    expose:
+      - '${FORWARD_APP_PORT:-3000}'
+#    ports:
+#      - '${FORWARD_APP_PORT:-3000}:3000'
     networks:
       - c3d_net
     depends_on:
