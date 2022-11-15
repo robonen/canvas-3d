@@ -16,7 +16,7 @@ services:
       - app
 
   app:
-#    container_name: app
+    #    container_name: app
     build:
       context: .
       dockerfile: Dockerfile
@@ -25,8 +25,8 @@ services:
       replicas: 2
     expose:
       - '${FORWARD_APP_PORT:-3000}'
-#    ports:
-#      - '${FORWARD_APP_PORT:-3000}:3000'
+    #    ports:
+    #      - '${FORWARD_APP_PORT:-3000}:3000'
     networks:
       - c3d_net
     depends_on:

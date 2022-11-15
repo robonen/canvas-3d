@@ -1,0 +1,31 @@
+version: '3'
+
+dotenv: [ '.env' ]
+
+tasks:
+  make:env:
+    cmds:
+      - '[ ! -f .env ] && cp .env.example .env; exit 0'
+
+  make:install:
+    cmds:
+      - '[ ! -d node_modules ] && npm install; exit 0'
+
+  local:run:
+    ignore_error: true
+    deps: [ make:env, make:install ]
+    cmds:
+      - npm run dev
+
+  docker:run:
+    deps: [ make:env ]
+    cmds:
+      - docker-compose -p $APP_NAME up -d
+
+  docker:stop:
+    cmds:
+      - docker-compose -p $APP_NAME down
+
+  docker:stop:force:
+    cmds:
+      - docker-compose -p $APP_NAME down -v --remove-orphans

@@ -4,6 +4,7 @@
   "bugs": {
     "url": "https://github.com/robonen/canvas-3d/issues?q=is:open is:issue label:bug"
   },
+  "author": "Andrew Robonen <robonenandrew@gmail.com>",
   "license": "MIT",
   "private": true,
   "scripts": {
