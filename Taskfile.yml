@@ -26,6 +26,11 @@ tasks:
     cmds:
       - docker-compose -p $APP_NAME down
 
-  docker:stop:force:
+  docker:stop:rm:
     cmds:
       - docker-compose -p $APP_NAME down -v --remove-orphans
+
+  test:performance:
+    ignore_error: true
+    cmds:
+      - docker run --rm -i --network host grafana/k6 run --vus 1000 --duration 30s - < ./src/tests/performance/test_main_page.js
