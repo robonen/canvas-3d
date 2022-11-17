@@ -1,17 +1,13 @@
+<script setup lang="ts">
+const figures = ['Тетраэдр', 'Гексаэдр', 'Октаэдр', 'Додекаэдр', 'Икосаэдр'];
+</script>
+
 <template>
-  <div>
-    <Head>
-      <Title>Главная</Title>
-    </Head>
-    <h1>Hello, Nuxt ✌</h1>
-  </div>
+  <h1>Выберете фигуру</h1>
+  <GridContainer>
+    <GridElement v-for="figure in figures" :key="figure" :title="figure"/>
+  </GridContainer>
 </template>
 
-<style scoped>
-div {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+<style scoped lang="scss">
 </style>

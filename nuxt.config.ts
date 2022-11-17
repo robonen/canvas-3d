@@ -1,12 +1,14 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
+import {defineNuxtConfig} from 'nuxt/config';
 import {resolve} from 'path';
 
 const SRC = resolve(__dirname, 'src');
 
 export default defineNuxtConfig({
-  rootDir: SRC,
+  srcDir: SRC,
   app: {
     head: {
+      title: 'Canvas 3D',
       link: [{rel: 'icon', href: '/favicon.svg'}],
     },
   },
