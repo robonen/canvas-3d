@@ -1,6 +1,4 @@
-import {defineEventHandler} from 'h3';
-
-export default defineEventHandler((event) => {
+export default defineEventHandler(() => {
   console.log('Request received');
 
   return {

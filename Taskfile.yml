@@ -22,6 +22,11 @@ tasks:
     cmds:
       - docker-compose -p $APP_NAME up -d
 
+  docker:run:build:
+    deps: [ make:env ]
+    cmds:
+      - docker-compose -p $APP_NAME up -d --build
+
   docker:stop:
     cmds:
       - docker-compose -p $APP_NAME down

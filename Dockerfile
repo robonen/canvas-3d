@@ -15,7 +15,7 @@ FROM node:${NODE_VERSION}
 
 WORKDIR /app
 
-COPY --from=builder /build/src/.output .
+COPY --from=builder /build/.output .
 
 ENV HOST=0.0.0.0
 ENV PORT=3000
