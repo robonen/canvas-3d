@@ -5,16 +5,18 @@
 
 # Temporary files
 node_modules
-tmp
-*.log*
+**/*~
+**/*.log
+**/.DS_Store
+**/Thumbs.db
 
 # Build
-src/.nuxt
-.nuxt
-.nitro
-.cache
-.output
-dist
+**/.nuxt
+**/.nitro
+**/.cache
+**/.output
+**/dist
 
 # Environment
+.env
 .env
