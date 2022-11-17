@@ -10,14 +10,19 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "typecheck": "nuxt typecheck",
+    "info": "nuxt info",
+    "analyze": "nuxt analyze",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@vueuse/core": "^9.3.1",
     "@vueuse/nuxt": "^9.3.1",
     "nuxt": "^3.0.0",
+    "husky": "^8.0.2",
     "sass": "^1.55.0"
   }
 }

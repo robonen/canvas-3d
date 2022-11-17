@@ -1,4 +1,11 @@
 :root {
   --background-color-primary: #f3f3f3;
   --font-color-primary: #3d3d3d;
+  --border-color: #e4e1e1;
+  --icon-color: #5e5f60;
+  --seconary-color: #8d8d8d;
+  --scroll-color: #d4d3d4;
+  --shadow-color: rgba(163, 167, 174, 0.2);
+  --border: 1px solid var(--border-color);
+  --shadow: 0 0 9px 0 var(--shadow-color);
 }
