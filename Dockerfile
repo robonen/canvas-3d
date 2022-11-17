@@ -5,9 +5,10 @@ FROM node:${NODE_VERSION} AS builder
 
 WORKDIR /build
 
+# See .dockerignore
 COPY . .
 
-RUN npm ci && npm run build && npm cache clean --force
+RUN npm cache clean --force && npm ci && npm run build
 
 # Stage 2: Run the application
 FROM node:${NODE_VERSION}
@@ -19,7 +20,6 @@ COPY --from=builder /build/src/.output .
 ENV HOST=0.0.0.0
 ENV PORT=3000
 
-VOLUME /app
 EXPOSE 3000
 
-CMD ["node", "./server/index.mjs"]
+ENTRYPOINT ["node", "./server/index.mjs"]

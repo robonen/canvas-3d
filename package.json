@@ -1,4 +1,11 @@
 {
+  "name": "canvas3d",
+  "description": "Web application for affine transformations of three-dimensional figures",
+  "bugs": {
+    "url": "https://github.com/robonen/canvas-3d/issues?q=is:open is:issue label:bug"
+  },
+  "author": "Andrew Robonen <robonenandrew@gmail.com>",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "build": "nuxt build",
@@ -10,7 +17,7 @@
   "devDependencies": {
     "@vueuse/core": "^9.3.1",
     "@vueuse/nuxt": "^9.3.1",
-    "nuxt": "3.0.0-rc.11",
+    "nuxt": "^3.0.0",
     "sass": "^1.55.0"
   }
 }
