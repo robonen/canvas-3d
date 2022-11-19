@@ -12,7 +12,7 @@ const showForm = ref<boolean>(false);
         <IconOpen v-else/>
       </button>
     </div>
-    <div class="content" v-if="showForm">
+    <div class="content" v-show="showForm">
       <slot/>
     </div>
   </section>

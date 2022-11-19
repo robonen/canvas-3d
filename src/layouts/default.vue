@@ -1,4 +1,5 @@
 <script setup lang="ts">
+
 const showMenu = ref<boolean>(true);
 </script>
 
@@ -17,7 +18,7 @@ const showMenu = ref<boolean>(true);
         </button>
       </template>
     </div>
-    <canvas class="canvas"/>
+    <Board class="canvas"/>
   </div>
 </template>
 

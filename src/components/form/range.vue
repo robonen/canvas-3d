@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import {HTMLElementEvent} from '@/types/dom';
+
 const {
   label,
   min,
@@ -14,10 +16,10 @@ const emit = defineEmits<{
 const value = ref<number>(defaultValue);
 
 const onChange = (event: Event) => {
-  value.value = (event.target as HTMLInputElement).valueAsNumber;
+  const {target} = event as HTMLElementEvent<HTMLInputElement>;
+  value.value = target.valueAsNumber;
   emit('change', value.value);
 };
-
 </script>
 
 <template>
