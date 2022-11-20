@@ -26,7 +26,7 @@ const activeProjection = ref<number>(0);
     </Accordion>
     <Accordion title="Проекции">
       <GridContainer>
-        <GridElement v-for="(projection, i) in projections" :is-active="activeProjection === i" :key="projection"
+        <GridElement v-for="(projection, i) in projections" :key="projection" :is-active="activeProjection === i"
                      :title="projection" @click="activeProjection = i"/>
       </GridContainer>
     </Accordion>

@@ -8,8 +8,7 @@ const showForm = ref<boolean>(false);
     <div class="header" @click="showForm = !showForm">
       <h2>{{ title }}</h2>
       <button class="button">
-        <IconClose v-if="showForm"/>
-        <IconOpen v-else/>
+        <IconOpen class="icon" :class="{icon_close: showForm}"/>
       </button>
     </div>
     <div class="content" v-show="showForm">
@@ -33,6 +32,14 @@ const showForm = ref<boolean>(false);
   user-select: none;
   cursor: pointer;
   padding: 8px 0;
+}
+
+.icon {
+  transition: transform 0.2s;
+
+  &_close {
+    transform: rotate(180deg);
+  }
 }
 
 .button {

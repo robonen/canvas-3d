@@ -5,6 +5,7 @@ const SRC = resolve(__dirname, 'src');
 
 export default defineNuxtConfig({
   srcDir: SRC,
+  ssr: false,
   app: {
     head: {
       title: 'Canvas 3D',
