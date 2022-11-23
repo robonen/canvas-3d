@@ -8,7 +8,7 @@ const showForm = ref<boolean>(false);
     <div class="header" @click="showForm = !showForm">
       <h2>{{ title }}</h2>
       <button class="button">
-        <IconOpen class="icon" :class="{icon_close: showForm}"/>
+        <IconOpen :class="{icon_close: showForm}" class="icon"/>
       </button>
     </div>
     <div class="content" v-show="showForm">

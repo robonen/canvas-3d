@@ -1,19 +1,18 @@
 <script setup lang="ts">
-
-const showMenu = ref<boolean>(true);
+const showMenu = ref<boolean>(false);
 </script>
 
 <template>
   <div class="wrapper">
     <div class="content">
-      <button v-if="!showMenu" class="button" @click="showMenu = true">
+      <button v-if="!showMenu" class="button button__show" @click="showMenu = true">
         <IconMenu/>
       </button>
       <template v-else>
         <div class="controls">
           <slot/>
         </div>
-        <button class="button" @click="showMenu = false">
+        <button class="button button__hide" @click="showMenu = false">
           <IconHide/>
         </button>
       </template>
@@ -59,6 +58,16 @@ const showMenu = ref<boolean>(true);
 .button {
   margin-top: 8px;
   z-index: 3;
+}
+
+.button__show {
+  width: 25px;
+  height: 25px;
+}
+
+.button__hide {
+  width: 22px;
+  height: 22px;
 }
 
 .canvas {
