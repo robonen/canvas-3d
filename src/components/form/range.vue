@@ -1,22 +1,28 @@
 <script setup lang="ts">
-import {HTMLElementEvent} from '@/types/dom';
+import { HTMLElementEvent } from '@/types/dom';
 
 const {
   label,
   min,
   max,
   defaultValue,
-  step = 0.1
-} = defineProps<{ label: string, min: number, max: number, defaultValue: number, step?: number }>();
+  step = 0.1,
+} = defineProps<{
+  label: string;
+  min: number;
+  max: number;
+  defaultValue: number;
+  step?: number;
+}>();
 
 const emit = defineEmits<{
-  (event: 'change', value: number): void
+  (event: 'change', value: number): void;
 }>();
 
 const value = ref<number>(defaultValue);
 
 const onChange = (event: Event) => {
-  const {target} = event as HTMLElementEvent<HTMLInputElement>;
+  const { target } = event as HTMLElementEvent<HTMLInputElement>;
   value.value = target.valueAsNumber;
   emit('change', value.value);
 };
@@ -26,12 +32,27 @@ const onChange = (event: Event) => {
   <div class="block">
     <label class="label">
       {{ label }}
-      <input :max="max" :min="min" :value="value" class="input" type="number" @input="onChange"/>
+      <input
+        :max="max"
+        :min="min"
+        :value="value"
+        class="input"
+        type="number"
+        @input="onChange"
+      />
     </label>
     <div class="range">
       <div class="range__border">{{ min }}</div>
-      <input :max="max" :min="min" :step="step" :value="value" class="range__input" type="range" @input="onChange"
-             @dblclick="value = defaultValue"/>
+      <input
+        :max="max"
+        :min="min"
+        :step="step"
+        :value="value"
+        class="range__input"
+        type="range"
+        @input="onChange"
+        @dblclick="value = defaultValue"
+      />
       <div class="range__border">{{ max }}</div>
     </div>
   </div>
@@ -62,7 +83,7 @@ const onChange = (event: Event) => {
     margin: 0;
   }
 
-  &[type=number] {
+  &[type='number'] {
     -moz-appearance: textfield;
   }
 }
@@ -86,9 +107,10 @@ const onChange = (event: Event) => {
   border-radius: 4px;
   margin: 10px 0;
   background: #e2e4e6;
-  transition: opacity .2s;
+  transition: opacity 0.2s;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     opacity: 1;
   }
 
@@ -102,6 +124,4 @@ const onChange = (event: Event) => {
     cursor: pointer;
   }
 }
-
-
 </style>

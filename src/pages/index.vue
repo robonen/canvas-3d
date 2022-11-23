@@ -5,9 +5,6 @@ const figures = ['Тетраэдр', 'Гексаэдр', 'Октаэдр', 'До
 <template>
   <h1>Выберете фигуру</h1>
   <GridContainer>
-    <GridElement v-for="figure in figures" :key="figure" :title="figure"/>
+    <GridElement v-for="figure in figures" :key="figure" :title="figure" />
   </GridContainer>
 </template>
-
-<style scoped lang="scss">
-</style>

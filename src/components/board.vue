@@ -7,13 +7,19 @@ onMounted(() => {
   canvas.value.width = window.innerWidth;
   canvas.value.height = window.innerHeight;
 
-  const ctx = canvas.value.getContext("2d");
+  const ctx = canvas.value.getContext('2d');
 
   if (!ctx) return;
 
-  ctx.fillStyle = "red";
+  ctx.fillStyle = 'red';
 
   type Point = [number, number, number, number];
+
+  const sizeX = canvas.value.width;
+  const sizeY = canvas.value.height;
+
+  const centerX = sizeX / 2;
+  const centerY = sizeY / 2;
 
   const points: Point[] = [
     [500, 500, 500, 1],
@@ -87,16 +93,6 @@ onMounted(() => {
     ];
   };
 
-  // Identity matrix
-  const identity = (): Point[] => {
-    return [
-      [1, 0, 0, 0],
-      [0, 1, 0, 0],
-      [0, 0, 1, 0],
-      [0, 0, 0, 1],
-    ];
-  };
-
   // Multiply array of points by matrix
   const multiply = (points: Point[], matrix: Point[]): Point[] => {
     const result: Point[] = [];
@@ -121,8 +117,11 @@ onMounted(() => {
   };
 
   // Draw figure
-  const drawFigure = (points: Point[], faces: [number, number, number, number][]) => {
-    ctx.clearRect(0, 0, canvas.value.width, canvas.value.height);
+  const drawFigure = (
+    points: Point[],
+    faces: [number, number, number, number][]
+  ) => {
+    ctx.clearRect(0, 0, sizeX, sizeY);
 
     faces.forEach((face) => {
       ctx.beginPath();
@@ -135,16 +134,13 @@ onMounted(() => {
     });
   };
 
-  // Rotation animation all axis on the center of the canvas
+  // Rotation animation all axis in the center of the canvas
   let angle = 0;
 
   const animate = () => {
     const matrix = multiply(
       multiply(
-        multiply(
-          translate(canvas.value.width / 2, canvas.value.height / 2, 0),
-          rotateX(angle)
-        ),
+        multiply(translate(centerX, centerY, 0), rotateX(angle)),
         rotateY(angle)
       ),
       rotateZ(angle)
@@ -164,7 +160,5 @@ onMounted(() => {
 </script>
 
 <template>
-  <canvas ref="canvas">
-    Sorry, your browser doesn't support canvas.
-  </canvas>
+  <canvas ref="canvas"> Sorry, your browser doesn't support canvas. </canvas>
 </template>
