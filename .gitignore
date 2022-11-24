@@ -2,7 +2,6 @@
 .vscode
 .idea
 
-
 # Temporary files
 node_modules
 **/*~
@@ -11,12 +10,10 @@ node_modules
 **/Thumbs.db
 
 # Build
-**/.nuxt
-**/.nitro
-**/.cache
-**/.output
-**/dist
+.nuxt
+src/.nuxt
+output
+dist
 
 # Environment
-.env
 .env
