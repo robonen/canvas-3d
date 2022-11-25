@@ -10,39 +10,44 @@ const projections = [
 ];
 
 const activeProjection = ref<number>(0);
+
+const transformations = useTransformations();
 </script>
 
 <template>
   <div class="container">
     <Accordion title="Перемещение">
       <FormRange
-        v-for="axis in axes"
+        v-for="(axis, i) in axes"
         :label="`${axis} =`"
-        :min="-10"
-        :max="10"
-        :step="0.1"
+        :min="-100"
+        :max="100"
+        :step="1"
         :defaultValue="0"
+        @change="transformations.setTranslation(i, $event)"
       />
     </Accordion>
     <Accordion title="Вращение">
       <FormRange
-        v-for="axis in axes"
+        v-for="(axis, i) in axes"
         :label="`${axis} =`"
         :min="0"
         :max="359"
         :step="1"
         :defaultValue="0"
+        @change="transformations.setRotation(i, $event)"
       />
     </Accordion>
     <Accordion title="Масштабирование">
       <FormRange
-        v-for="axis in axes"
+        v-for="(axis, i) in axes"
         :key="axis"
         :label="`${axis} =`"
         :min="0.1"
         :max="5"
         :step="0.1"
         :defaultValue="1"
+        @change="transformations.setScale(i, $event)"
       />
     </Accordion>
     <Accordion title="Проекции">

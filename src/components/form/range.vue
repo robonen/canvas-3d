@@ -26,6 +26,11 @@ const onChange = (event: Event) => {
   value.value = target.valueAsNumber;
   emit('change', value.value);
 };
+
+const reset = () => {
+  value.value = defaultValue;
+  emit('change', value.value);
+};
 </script>
 
 <template>
@@ -51,7 +56,7 @@ const onChange = (event: Event) => {
         class="range__input"
         type="range"
         @input="onChange"
-        @dblclick="value = defaultValue"
+        @click.middle="reset"
       />
       <div class="range__border">{{ max }}</div>
     </div>

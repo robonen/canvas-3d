@@ -1,2 +1,4 @@
-export type Point = [number, number];
-export type Vector = [Point, Point, Point];
+export type Vec3 = [number, number, number];
+export type Vec4 = [number, number, number, number];
+
+export type Mat4 = [Vec4, Vec4, Vec4, Vec4];

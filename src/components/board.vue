@@ -21,25 +21,47 @@ onMounted(() => {
   const centerX = sizeX / 2;
   const centerY = sizeY / 2;
 
+  const figureSizeH = 200;
+  const figureSizeW = 200;
+
   const points: Point[] = [
-    [500, 500, 500, 1],
-    [500, 500, 700, 1],
-    [500, 700, 500, 1],
-    [500, 700, 700, 1],
-    [700, 500, 500, 1],
-    [700, 500, 700, 1],
-    [700, 700, 500, 1],
-    [700, 700, 700, 1],
+    [0, 0, figureSizeH, 1],
+    [0, 100, 0, 1],
+    [95.1, 30.9, 0, 1],
+    [58.8, -80.9, 0, 1],
+    [-58.8, -80.9, 0, 1],
+    [-95.1, 30.9, 0, 1],
   ];
 
-  const faces: [number, number, number, number][] = [
-    [0, 1, 3, 2],
-    [0, 1, 5, 4],
-    [0, 2, 6, 4],
-    [1, 3, 7, 5],
-    [2, 3, 7, 6],
-    [4, 5, 7, 6],
+  const faces = [
+    [0, 1, 2],
+    [0, 2, 3],
+    [0, 3, 4],
+    [0, 4, 5],
+    [0, 5, 1],
+    [1, 2, 3, 4, 5],
   ];
+
+  // Cube
+  // const points: Point[] = [
+  //   [0, 0, 0, 1],
+  //   [0, 0, 100, 1],
+  //   [0, 100, 0, 1],
+  //   [0, 100, 100, 1],
+  //   [100, 0, 0, 1],
+  //   [100, 0, 100, 1],
+  //   [100, 100, 0, 1],
+  //   [100, 100, 100, 1],
+  // ];
+  //
+  // const faces = [
+  //   [0, 1, 3, 2],
+  //   [0, 1, 5, 4],
+  //   [0, 2, 6, 4],
+  //   [1, 3, 7, 5],
+  //   [2, 3, 7, 6],
+  //   [4, 5, 7, 6],
+  // ];
 
   // Rotate around X axis
   const rotateX = (angle: number): Point[] => {
@@ -83,12 +105,35 @@ onMounted(() => {
     ];
   };
 
+  const rotate = (x: number, y: number, z: number): Point[] => {
+    return mul([rotateX(x), rotateY(y), rotateZ(z)]);
+  };
+
   // Translate
   const translate = (x: number, y: number, z: number): Point[] => {
     return [
-      [1, 0, 0, x],
-      [0, 1, 0, y],
-      [0, 0, 1, z],
+      [1, 0, 0, 0],
+      [0, 1, 0, 0],
+      [0, 0, 1, 0],
+      [x, y, z, 1],
+    ];
+  };
+
+  // Scale
+  const scaleMatrix = (x: number, y: number, z: number): Point[] => {
+    return [
+      [x, 0, 0, 0],
+      [0, y, 0, 0],
+      [0, 0, z, 0],
+      [0, 0, 0, 1],
+    ];
+  };
+
+  const axonometryIsometric = (): Point[] => {
+    return [
+      [0.707, -0.408, 0, 0],
+      [0, 0.816, 0, 0],
+      [-0.707, -0.408, 1, 0],
       [0, 0, 0, 1],
     ];
   };
@@ -116,46 +161,52 @@ onMounted(() => {
     return result;
   };
 
+  const mul = (matrices: Point[][]) => {
+    let result = matrices[0];
+
+    for (let i = 1; i < matrices.length; i++) {
+      result = multiply(result, matrices[i]);
+    }
+
+    return result;
+  };
+
   // Draw figure
-  const drawFigure = (
-    points: Point[],
-    faces: [number, number, number, number][]
-  ) => {
+  const drawFigure = (points: Point[], faces: number[][]) => {
     ctx.clearRect(0, 0, sizeX, sizeY);
 
-    faces.forEach((face) => {
+    for (const face of faces) {
       ctx.beginPath();
-      ctx.moveTo(points[face[0]][0], points[face[0]][1]);
-      ctx.lineTo(points[face[1]][0], points[face[1]][1]);
-      ctx.lineTo(points[face[2]][0], points[face[2]][1]);
-      ctx.lineTo(points[face[3]][0], points[face[3]][1]);
+
+      for (let i = 0; i < face.length; i++) {
+        const [x, y] = points[face[i]];
+
+        if (i === 0) {
+          ctx.moveTo(x, y);
+        } else {
+          ctx.lineTo(x, y);
+        }
+      }
+
       ctx.closePath();
       ctx.stroke();
-    });
+    }
   };
 
-  // Rotation animation all axis in the center of the canvas
-  let angle = 0;
-
-  const animate = () => {
-    const matrix = multiply(
-      multiply(
-        multiply(translate(centerX, centerY, 0), rotateX(angle)),
-        rotateY(angle)
-      ),
-      rotateZ(angle)
+  useTransformations((translation, rotation, scale) => {
+    drawFigure(
+      mul([
+        points,
+        scaleMatrix(scale[0], scale[1], scale[2]),
+        rotate(rotation[0], rotation[1], rotation[2]),
+        translate(translation[0], translation[1], translation[2]),
+        rotateX(-90),
+        axonometryIsometric(),
+        translate(centerX, centerY + figureSizeH / 2, 0),
+      ]),
+      faces
     );
-
-    const rotatedPoints = multiply(points, matrix);
-
-    drawFigure(rotatedPoints, faces);
-
-    angle += angle < 360 ? 1 : -360;
-
-    requestAnimationFrame(animate);
-  };
-
-  animate();
+  });
 });
 </script>
 
