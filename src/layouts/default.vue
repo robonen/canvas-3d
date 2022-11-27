@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const showMenu = ref<boolean>(false);
+const showMenu = ref<boolean>(true);
 </script>
 
 <template>

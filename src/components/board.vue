@@ -21,47 +21,116 @@ onMounted(() => {
   const centerX = sizeX / 2;
   const centerY = sizeY / 2;
 
-  const figureSizeH = 200;
-  const figureSizeW = 200;
+  const figureSize = 200;
 
-  const points: Point[] = [
-    [0, 0, figureSizeH, 1],
-    [0, 100, 0, 1],
-    [95.1, 30.9, 0, 1],
-    [58.8, -80.9, 0, 1],
-    [-58.8, -80.9, 0, 1],
-    [-95.1, 30.9, 0, 1],
+  const figureList = {
+    [Figures.CUBE]: {
+      points: [
+        [0, 0, 0, 1],
+        [0, 0, 200, 1],
+        [0, 200, 0, 1],
+        [0, 200, 200, 1],
+        [200, 0, 0, 1],
+        [200, 0, 200, 1],
+        [200, 200, 0, 1],
+        [200, 200, 200, 1],
+      ] as Point[],
+      faces: [
+        [0, 1, 3, 2],
+        [0, 1, 5, 4],
+        [0, 2, 6, 4],
+        [1, 3, 7, 5],
+        [2, 3, 7, 6],
+        [4, 5, 7, 6],
+      ],
+    },
+
+    [Figures.OCTAHEDRON]: {
+      points: [
+        [0, 0, 100, 1],
+        [100, 100, 0, 1],
+        [100, -100, 0, 1],
+        [-100, -100, 0, 1],
+        [-100, 100, 0, 1],
+        [0, 0, -100, 1],
+      ] as Point[],
+      faces: [
+        [0, 1, 2],
+        [0, 2, 3],
+        [0, 3, 4],
+        [0, 4, 1],
+        [5, 1, 2],
+        [5, 2, 3],
+        [5, 3, 4],
+        [5, 4, 1],
+      ],
+    },
+
+    [Figures.TRIHEDRAL_PYRAMID]: {
+      points: [
+        [0, 0, 100, 1],
+        [0, 80, 0, 1],
+        [86.6, -50, 0, 1],
+        [-86.6, -50, 0, 1],
+      ] as Point[],
+      faces: [
+        [0, 1, 2],
+        [0, 2, 3],
+        [0, 3, 1],
+        [1, 2, 3],
+      ],
+    },
+
+    [Figures.SQUARE_PYRAMID]: {
+      points: [
+        [0, 0, figureSize, 1],
+        [100, 100, 0, 1],
+        [100, -100, 0, 1],
+        [-100, -100, 0, 1],
+        [-100, 100, 0, 1],
+      ] as Point[],
+      faces: [
+        [0, 1, 2],
+        [0, 2, 3],
+        [0, 3, 4],
+        [0, 4, 1],
+        [1, 2, 3, 4],
+      ],
+    },
+
+    [Figures.PENTAGONAL_PYRAMID]: {
+      points: [
+        [0, 0, figureSize, 1],
+        [0, 100, 0, 1],
+        [95.1, 30.9, 0, 1],
+        [58.8, -80.9, 0, 1],
+        [-58.8, -80.9, 0, 1],
+        [-95.1, 30.9, 0, 1],
+      ] as Point[],
+      faces: [
+        [0, 1, 2],
+        [0, 2, 3],
+        [0, 3, 4],
+        [0, 4, 5],
+        [0, 5, 1],
+        [1, 2, 3, 4, 5],
+      ],
+    },
+  };
+
+  const identityMatrix: Point[] = [
+    [1, 0, 0, 0],
+    [0, 1, 0, 0],
+    [0, 0, 1, 0],
+    [0, 0, 0, 1],
   ];
 
-  const faces = [
-    [0, 1, 2],
-    [0, 2, 3],
-    [0, 3, 4],
-    [0, 4, 5],
-    [0, 5, 1],
-    [1, 2, 3, 4, 5],
+  const translationMatrix: Point[] = [
+    [1, 0, 0, 0],
+    [0, -1, 0, 0],
+    [0, 0, 1, 0],
+    [centerX, centerY, 0, 1],
   ];
-
-  // Cube
-  // const points: Point[] = [
-  //   [0, 0, 0, 1],
-  //   [0, 0, 100, 1],
-  //   [0, 100, 0, 1],
-  //   [0, 100, 100, 1],
-  //   [100, 0, 0, 1],
-  //   [100, 0, 100, 1],
-  //   [100, 100, 0, 1],
-  //   [100, 100, 100, 1],
-  // ];
-  //
-  // const faces = [
-  //   [0, 1, 3, 2],
-  //   [0, 1, 5, 4],
-  //   [0, 2, 6, 4],
-  //   [1, 3, 7, 5],
-  //   [2, 3, 7, 6],
-  //   [4, 5, 7, 6],
-  // ];
 
   // Rotate around X axis
   const rotateX = (angle: number): Point[] => {
@@ -129,13 +198,43 @@ onMounted(() => {
     ];
   };
 
-  const axonometryIsometric = (): Point[] => {
-    return [
+  const projections = {
+    [Projections.NONE]: (): Point[] => identityMatrix,
+
+    [Projections.ISOMETRIC]: (): Point[] => [
       [0.707, -0.408, 0, 0],
       [0, 0.816, 0, 0],
       [-0.707, -0.408, 1, 0],
       [0, 0, 0, 1],
-    ];
+    ],
+
+    [Projections.DIMETRIC]: (): Point[] => [
+      [0.926, 0.134, 0, 0],
+      [0, 0.935, 0, 0],
+      [0.378, -0.327, 0, 0],
+      [0, 0, 0, 1],
+    ],
+
+    [Projections.TRIMETRIC]: (): Point[] => [
+      [0.866, 0.354, 0, 0],
+      [0, 0.707, 0, 0],
+      [0.5, -0.612, 0, 0],
+      [0, 0, 0, 1],
+    ],
+
+    [Projections.ONE_POINT_PERSPECTIVE]: (): Point[] => [
+      [1, 0, 0, 0],
+      [0, 1, 0, 0],
+      [0, 0, 0, 0.001],
+      [0, 0, 0, 1],
+    ],
+
+    [Projections.TWO_POINT_PERSPECTIVE]: (): Point[] => [
+      [1, 0, 0, 0.001],
+      [0, 1, 0, 0.001],
+      [0, 0, 0, 0],
+      [0, 0, 0, 1],
+    ],
   };
 
   // Multiply array of points by matrix
@@ -193,18 +292,27 @@ onMounted(() => {
     }
   };
 
-  useTransformations((translation, rotation, scale) => {
+  const { currentFigure } = useFigure();
+
+  useTransformations((translation, rotation, scale, prj) => {
+    const matrix = mul([
+      figureList[currentFigure.value].points,
+      scaleMatrix(scale[0], scale[1], scale[2]),
+      rotate(rotation[0], rotation[1], rotation[2]),
+      translate(translation[0], translation[1], translation[2]),
+      projections[prj](),
+    ]);
+
+    for (let i = 0; i < matrix.length; i++) {
+      matrix[i][0] = matrix[i][0] / matrix[i][3];
+      matrix[i][1] = matrix[i][1] / matrix[i][3];
+      matrix[i][2] = matrix[i][2] / matrix[i][3];
+      matrix[i][3] = 1;
+    }
+
     drawFigure(
-      mul([
-        points,
-        scaleMatrix(scale[0], scale[1], scale[2]),
-        rotate(rotation[0], rotation[1], rotation[2]),
-        translate(translation[0], translation[1], translation[2]),
-        rotateX(-90),
-        axonometryIsometric(),
-        translate(centerX, centerY + figureSizeH / 2, 0),
-      ]),
-      faces
+      mul([matrix, translationMatrix]),
+      figureList[currentFigure.value].faces
     );
   });
 });

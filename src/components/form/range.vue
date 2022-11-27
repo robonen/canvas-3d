@@ -5,12 +5,14 @@ const {
   label,
   min,
   max,
+  currentValue,
   defaultValue,
   step = 0.1,
 } = defineProps<{
   label: string;
   min: number;
   max: number;
+  currentValue: number;
   defaultValue: number;
   step?: number;
 }>();
@@ -19,7 +21,7 @@ const emit = defineEmits<{
   (event: 'change', value: number): void;
 }>();
 
-const value = ref<number>(defaultValue);
+const value = ref<number>(currentValue);
 
 const onChange = (event: Event) => {
   const { target } = event as HTMLElementEvent<HTMLInputElement>;
