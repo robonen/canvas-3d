@@ -4,6 +4,7 @@
 # Allow files and directories
 !.env
 !src
+!packages
 !nuxt.config.ts
 !tsconfig.json
 !package.json

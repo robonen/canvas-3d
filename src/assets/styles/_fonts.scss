@@ -8,10 +8,10 @@
       font-family: $font-family;
       src: url('#{$font-with-path}.eot');
       src: local('#{$font-with-dash}'), local('#{$font-with-space}'),
-      url('#{$font-with-path}.eot?#iefix') format('embedded-opentype'),
-      url('#{$font-with-path}.woff2') format('woff2'),
-      url('#{$font-with-path}.woff') format('woff'),
-      url('#{$font-with-path}.ttf') format('truetype');
+        url('#{$font-with-path}.eot?#iefix') format('embedded-opentype'),
+        url('#{$font-with-path}.woff2') format('woff2'),
+        url('#{$font-with-path}.woff') format('woff'),
+        url('#{$font-with-path}.ttf') format('truetype');
       font-weight: $weight;
       font-style: normal;
     }
@@ -19,11 +19,12 @@
     @font-face {
       font-family: $font-family;
       src: url('#{$font-with-path}Italic.eot');
-      src: local('#{$font-with-dash}Italic'), local('#{$font-with-space} Italic'),
-      url('#{$font-with-path}Italic.eot?#iefix') format('embedded-opentype'),
-      url('#{$font-with-path}Italic.woff2') format('woff2'),
-      url('#{$font-with-path}Italic.woff') format('woff'),
-      url('#{$font-with-path}Italic.ttf') format('truetype');
+      src: local('#{$font-with-dash}Italic'),
+        local('#{$font-with-space} Italic'),
+        url('#{$font-with-path}Italic.eot?#iefix') format('embedded-opentype'),
+        url('#{$font-with-path}Italic.woff2') format('woff2'),
+        url('#{$font-with-path}Italic.woff') format('woff'),
+        url('#{$font-with-path}Italic.ttf') format('truetype');
       font-weight: $weight;
       font-style: italic;
     }
@@ -38,14 +39,15 @@ $fonts: (
   Black: 700,
 );
 
-@include MakeFont('Formular', $fonts, '@/assets/fonts/formular');
-
 @font-face {
   font-family: 'Computer Modern Serif';
   src: url('@/assets/fonts/computer-modern/cmunrm.eot');
-  src: url('@/assets/fonts/computer-modern/cmunrm.eot?#iefix') format('embedded-opentype'),
-  url('@/assets/fonts/computer-modern/cmunrm.woff') format('woff'),
-  url('@/assets/fonts/computer-modern/cmunrm.ttf') format('truetype');
+  src: url('@/assets/fonts/computer-modern/cmunrm.eot?#iefix')
+      format('embedded-opentype'),
+    url('@/assets/fonts/computer-modern/cmunrm.woff') format('woff'),
+    url('@/assets/fonts/computer-modern/cmunrm.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
+
+@include MakeFont('Formular', $fonts, '@/assets/fonts/formular');

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const {title} = defineProps<{ title: string }>();
+const { title } = defineProps<{ title: string }>();
 const showForm = ref<boolean>(false);
 </script>
 
@@ -8,12 +8,11 @@ const showForm = ref<boolean>(false);
     <div class="header" @click="showForm = !showForm">
       <h2>{{ title }}</h2>
       <button class="button">
-        <IconClose v-if="showForm"/>
-        <IconOpen v-else/>
+        <IconOpen :class="{ icon_close: showForm }" class="icon" />
       </button>
     </div>
-    <div class="content" v-if="showForm">
-      <slot/>
+    <div class="content" v-show="showForm">
+      <slot />
     </div>
   </section>
 </template>
@@ -27,12 +26,20 @@ const showForm = ref<boolean>(false);
 
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   column-gap: 12px;
   user-select: none;
   cursor: pointer;
   padding: 8px 0;
+}
+
+.icon {
+  transition: transform 0.2s;
+
+  &_close {
+    transform: rotate(180deg);
+  }
 }
 
 .button {

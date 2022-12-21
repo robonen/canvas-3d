@@ -5,19 +5,23 @@ const showMenu = ref<boolean>(true);
 <template>
   <div class="wrapper">
     <div class="content">
-      <button v-if="!showMenu" class="button" @click="showMenu = true">
-        <IconMenu/>
+      <button
+        v-if="!showMenu"
+        class="button button__show"
+        @click="showMenu = true"
+      >
+        <IconMenu />
       </button>
       <template v-else>
         <div class="controls">
-          <slot/>
+          <slot />
         </div>
-        <button class="button" @click="showMenu = false">
-          <IconHide/>
+        <button class="button button__hide" @click="showMenu = false">
+          <IconHide />
         </button>
       </template>
     </div>
-    <canvas class="canvas"/>
+    <Board class="canvas" />
   </div>
 </template>
 
@@ -40,7 +44,6 @@ const showMenu = ref<boolean>(true);
 
 .controls {
   position: relative;
-  box-sizing: border-box;
   padding: 28px 24px;
   background-color: white;
   border-radius: 8px;
@@ -58,6 +61,16 @@ const showMenu = ref<boolean>(true);
 .button {
   margin-top: 8px;
   z-index: 3;
+}
+
+.button__show {
+  width: 25px;
+  height: 25px;
+}
+
+.button__hide {
+  width: 22px;
+  height: 22px;
 }
 
 .canvas {

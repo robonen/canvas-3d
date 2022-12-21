@@ -1,10 +1,12 @@
 <script setup lang="ts">
-const {title, isActive = false} = defineProps<{ title?: string, isActive?: boolean }>();
-
+const { title, isActive = false } = defineProps<{
+  title?: string;
+  isActive?: boolean;
+}>();
 </script>
 
 <template>
-  <button class="block" :class="{'block_active': isActive}">
+  <button class="block" :class="{ block_active: isActive }">
     <div class="picture"></div>
     <div v-if="title" class="title">{{ title }}</div>
   </button>
@@ -23,7 +25,6 @@ const {title, isActive = false} = defineProps<{ title?: string, isActive?: boole
   height: 200px;
   position: relative;
   cursor: pointer;
-  box-sizing: border-box;
   border-radius: 8px;
   background-color: #fae9ef;
   color: #67122c;
@@ -54,8 +55,8 @@ const {title, isActive = false} = defineProps<{ title?: string, isActive?: boole
 }
 
 .title {
-  margin-top: 8px;
   width: 100%;
+  margin-top: 8px;
   text-align: left;
 }
 </style>
