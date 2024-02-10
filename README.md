@@ -1,4 +1,4 @@
-# Nuxt 3.0.0 Minimal Starter
+# Nuxt 3.0.0
 
 Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
 
