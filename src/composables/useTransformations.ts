@@ -1,3 +1,4 @@
+// Types
 export const enum Projections {
   NONE,
   ISOMETRIC,
@@ -18,6 +19,7 @@ type fn =
     ) => void)
   | null;
 
+// Composable
 const translation = reactive<XYZ>([0, 0, 0]);
 const rotation = reactive<XYZ>([0, 0, 0]);
 const scale = reactive<XYZ>([1, 1, 1]);

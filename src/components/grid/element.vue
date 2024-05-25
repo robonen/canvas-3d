@@ -1,8 +1,13 @@
 <script setup lang="ts">
-const { title, isActive = false } = defineProps<{
-  title?: string;
-  isActive?: boolean;
-}>();
+withDefaults(
+  defineProps<{
+    title?: string;
+    isActive?: boolean;
+  }>(),
+  {
+    isActive: false,
+  }
+);
 </script>
 
 <template>
@@ -30,7 +35,9 @@ const { title, isActive = false } = defineProps<{
   color: #67122c;
   padding: 16px;
   font-size: 17px;
-  transition: background-color 0.2s, transform 0.2s;
+  transition:
+    background-color 0.2s,
+    transform 0.2s;
 
   &_active {
     background-color: #fdd2e2;

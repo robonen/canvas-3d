@@ -1,7 +1,4 @@
-version: '3'
-
 services:
-
   proxy_lb:
     container_name: proxy_lb
     image: nginx:latest
@@ -26,27 +23,6 @@ services:
       - '${FORWARD_APP_PORT:-3000}'
     networks:
       - c3d_net
-    depends_on:
-      - db
-
-  db:
-    container_name: db
-    image: 'postgres:latest'
-    ports:
-      - '${FORWARD_DB_PORT:-5432}:5432'
-    environment:
-      PGPASSWORD: '${DB_PASSWORD:-secret}'
-      POSTGRES_DB: '${DB_DATABASE}'
-      POSTGRES_USER: '${DB_USERNAME}'
-      POSTGRES_PASSWORD: '${DB_PASSWORD:-secret}'
-    volumes:
-      - 'c3d_vol:/var/lib/postgresql/data'
-    networks:
-      - c3d_net
-    healthcheck:
-      test: [ "CMD", "pg_isready", "-q", "-d", "${DB_DATABASE}", "-U", "${DB_USERNAME}" ]
-      retries: 3
-      timeout: 5s
 
 volumes:
   c3d_vol:

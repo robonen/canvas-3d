@@ -1,3 +1,4 @@
+// Types
 export const enum Figures {
   CUBE,
   OCTAHEDRON,
@@ -6,6 +7,7 @@ export const enum Figures {
   PENTAGONAL_PYRAMID,
 }
 
+// Composable
 const currentFigure = ref<Figures>(Figures.PENTAGONAL_PYRAMID);
 
 export const useFigure = () => {

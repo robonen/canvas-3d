@@ -1,36 +1,31 @@
 <script setup lang="ts">
-import { HTMLElementEvent } from '@/types/dom';
-
-const {
-  label,
-  min,
-  max,
-  currentValue,
-  defaultValue,
-  step = 0.1,
-} = defineProps<{
-  label: string;
-  min: number;
-  max: number;
-  currentValue: number;
-  defaultValue: number;
-  step?: number;
-}>();
+const props = withDefaults(
+  defineProps<{
+    label: string;
+    min: number;
+    max: number;
+    currentValue: number;
+    defaultValue: number;
+    step?: number;
+  }>(),
+  {
+    step: 0.1,
+  }
+);
 
 const emit = defineEmits<{
   (event: 'change', value: number): void;
 }>();
 
-const value = ref<number>(currentValue);
+const value = ref<number>(props.currentValue);
 
 const onChange = (event: Event) => {
-  const { target } = event as HTMLElementEvent<HTMLInputElement>;
-  value.value = target.valueAsNumber;
+  value.value = (event.target as HTMLInputElement).valueAsNumber;
   emit('change', value.value);
 };
 
 const reset = () => {
-  value.value = defaultValue;
+  value.value = props.defaultValue;
   emit('change', value.value);
 };
 </script>
@@ -86,12 +81,12 @@ const reset = () => {
 
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
-    -webkit-appearance: none;
+    appearance: none;
     margin: 0;
   }
 
   &[type='number'] {
-    -moz-appearance: textfield;
+    appearance: textfield;
   }
 }
 
@@ -108,7 +103,7 @@ const reset = () => {
 }
 
 .range__input {
-  -webkit-appearance: none;
+  appearance: none;
   flex: 1;
   height: 6px;
   border-radius: 4px;
@@ -122,7 +117,6 @@ const reset = () => {
   }
 
   &::-webkit-slider-thumb {
-    -webkit-appearance: none;
     appearance: none;
     width: 14px;
     height: 14px;

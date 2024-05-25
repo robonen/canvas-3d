@@ -1,22 +1,14 @@
 <script setup lang="ts">
-const allFigures = [
-  { figure: Figures.CUBE, title: 'Куб' },
-  { figure: Figures.OCTAHEDRON, title: 'Октаэдр' },
-  { figure: Figures.TRIHEDRAL_PYRAMID, title: 'Трехгранная пирамида' },
-  { figure: Figures.SQUARE_PYRAMID, title: 'Четырехгранная пирамида' },
-  { figure: Figures.PENTAGONAL_PYRAMID, title: 'Пятигранная пирамиида' },
-];
-
 const activeFigure = ref<number>(0);
 
 const figure = useFigure();
 
 onMounted(() => (activeFigure.value = figure.currentFigure.value));
 
-const selectFigure = (index: number) => {
+const selectFigure = async (index: number) => {
   activeFigure.value = index;
-  figure.setFigure(allFigures[index].figure);
-  navigateTo('/figure');
+  figure.setFigure(figuresMenu[index].figure);
+  await navigateTo('/figure');
 };
 </script>
 
@@ -24,7 +16,7 @@ const selectFigure = (index: number) => {
   <h1>Выберете фигуру</h1>
   <GridContainer>
     <GridElement
-      v-for="(figure, i) in allFigures"
+      v-for="(figure, i) in figuresMenu"
       :key="figure.title"
       :title="figure.title"
       :is-active="activeFigure === i"
