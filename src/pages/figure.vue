@@ -1,20 +1,4 @@
 <script setup lang="ts">
-const axes = ['x', 'y', 'z'];
-const projections = [
-  { projection: Projections.NONE, title: 'Без проекции' },
-  { projection: Projections.ISOMETRIC, title: 'Изометрическая' },
-  { projection: Projections.DIMETRIC, title: 'Диметрическая' },
-  { projection: Projections.TRIMETRIC, title: 'Триметрическая' },
-  {
-    projection: Projections.ONE_POINT_PERSPECTIVE,
-    title: 'Одноточечная перспектива',
-  },
-  {
-    projection: Projections.TWO_POINT_PERSPECTIVE,
-    title: 'Двухточечная перспектива',
-  },
-];
-
 const activeProjection = ref<number>(0);
 
 const transformations = useTransformations();
@@ -23,7 +7,7 @@ onMounted(() => (activeProjection.value = transformations.projection.value));
 
 const setActiveProjection = (index: number) => {
   activeProjection.value = index;
-  transformations.setProjection(projections[index].projection);
+  transformations.setProjection(projectionsMenu[index].projection);
 };
 </script>
 
@@ -69,7 +53,7 @@ const setActiveProjection = (index: number) => {
     <Accordion title="Проекции">
       <GridContainer>
         <GridElement
-          v-for="(projection, i) in projections"
+          v-for="(projection, i) in projectionsMenu"
           :key="projection.title"
           :is-active="activeProjection === i"
           :title="projection.title"

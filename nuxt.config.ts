@@ -1,12 +1,9 @@
-// https://v3.nuxtjs.org/api/configuration/nuxt.config
-import { resolve } from 'path';
-
-const SRC = resolve(__dirname, 'src');
-const PACKAGES = resolve(__dirname, 'packages');
-
 export default defineNuxtConfig({
-  srcDir: SRC,
+  srcDir: 'src',
   ssr: false,
+  imports: {
+    dirs: ['const'],
+  },
   app: {
     head: {
       title: 'Canvas 3D',
@@ -14,9 +11,5 @@ export default defineNuxtConfig({
     },
   },
   css: ['@/assets/styles/main.scss'],
-  typescript: {
-    typeCheck: true,
-    shim: false,
-  },
-  modules: ['@vueuse/nuxt'],
+  devtools: { enabled: true },
 });

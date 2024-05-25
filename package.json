@@ -8,23 +8,25 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "nuxt build",
     "dev": "nuxt dev",
-    "typecheck": "nuxt typecheck",
-    "info": "nuxt info",
-    "analyze": "nuxt analyze",
-    "generate": "nuxt generate",
+    "build": "nuxt build",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "type:check": "nuxt typecheck",
+    "style:check": "prettier --check .",
+    "style:fix": "prettier --write ."
+  },
+  "dependencies": {
+    "nuxt": "^3.11.2",
+    "sass": "^1.77.2",
+    "vue": "^3.4.27",
+    "vue-router": "^4.3.2"
   },
   "devDependencies": {
-    "@vueuse/core": "^9.3.1",
-    "@vueuse/nuxt": "^9.3.1",
-    "husky": "^8.0.2",
-    "nuxt": "^3.0.0",
-    "prettier": "^2.8.0",
-    "sass": "^1.55.0",
-    "vue-tsc": "^1.0.9"
+    "husky": "^9.0.11",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.5",
+    "vue-tsc": "^2.0.19"
   }
 }

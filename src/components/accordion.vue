@@ -1,5 +1,6 @@
 <script setup lang="ts">
-const { title } = defineProps<{ title: string }>();
+defineProps<{ title: string }>();
+
 const showForm = ref<boolean>(false);
 </script>
 
