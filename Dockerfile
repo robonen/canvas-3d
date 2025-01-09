@@ -1,4 +1,4 @@
-ARG NODE_VERSION=22.12.0-slim
+ARG NODE_VERSION=22.13.0-slim
 
 # Stage 1: Build the application
 FROM node:${NODE_VERSION} AS builder
