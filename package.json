@@ -18,15 +18,15 @@
     "style:fix": "prettier --write ."
   },
   "dependencies": {
-    "nuxt": "^3.15.2",
-    "sass": "^1.83.4",
+    "nuxt": "^3.15.4",
+    "sass": "^1.85.0",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
   },
   "devDependencies": {
     "husky": "^9.1.7",
-    "prettier": "^3.4.2",
+    "prettier": "^3.5.1",
     "typescript": "^5.7.3",
-    "vue-tsc": "^2.2.0"
+    "vue-tsc": "^2.2.2"
   }
 }
