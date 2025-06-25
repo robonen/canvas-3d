@@ -25,8 +25,8 @@ importers:
         specifier: ^9.1.7
         version: 9.1.7
       prettier:
-        specifier: ^3.5.3
-        version: 3.5.3
+        specifier: ^3.6.1
+        version: 3.6.1
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -2892,8 +2892,8 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  prettier@3.5.3:
-    resolution: {integrity: sha512-QQtaxnoDJeAkDvDKWCLiwIXkTgRhwYDEQCghU9Z6q03iyek/rxRh/2lC3HB7P8sWT2xC/y5JDctPLBIGzHKbhw==}
+  prettier@3.6.1:
+    resolution: {integrity: sha512-5xGWRa90Sp2+x1dQtNpIpeOQpTDBs9cZDmA/qs2vDNN2i18PdapqY7CmBeyLlMuGqXJRIOPaCaVZTLNQRWUH/A==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -6902,7 +6902,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  prettier@3.5.3: {}
+  prettier@3.6.1: {}
 
   pretty-bytes@6.1.1: {}
 
