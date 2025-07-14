@@ -18,7 +18,7 @@
     "style:fix": "prettier --write ."
   },
   "dependencies": {
-    "nuxt": "^3.17.5",
+    "nuxt": "^3.17.7",
     "sass": "^1.89.2",
     "vue": "^3.5.17",
     "vue-router": "^4.5.1"
@@ -27,6 +27,6 @@
     "husky": "^9.1.7",
     "prettier": "^3.6.2",
     "typescript": "^5.8.3",
-    "vue-tsc": "^2.2.10"
+    "vue-tsc": "^2.2.12"
   }
 }
